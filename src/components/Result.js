@@ -10,6 +10,7 @@ import resultBackground from "../assets/images/result-background.png"; // 결과
 function Result() {
   const navigate = useNavigate(); // 페이지 이동을 위한 Hook
   const { mbti } = useParams(); // URL에서 MBTI 결과 값 가져오기
+  const nickname = localStorage.getItem("nickname") || "익명의"; // 저장된 별명 가져오기
 
   // MBTI별 햄부기 유형 설명 객체
   const results = {
@@ -108,6 +109,7 @@ function Result() {
 
       {/* 결과 텍스트 영역 */}
       <div className="result-text">
+        <h2>{nickname}님의 햄부기 유형</h2>
         <h2>{title}</h2>
         <p>{desc}</p>
 
