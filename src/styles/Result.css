@@ -1,0 +1,96 @@
+/* 결과 페이지 전체 스타일 */
+.result-container {
+  text-align: center;
+  padding: 20px;
+  min-height: 100vh; /* 최소 높이를 화면 높이만큼 설정 */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 결과 이미지 */
+.result-image {
+  width: 200px;
+  margin-top: -80px; /* 이미지 위로 이동 */
+  margin-bottom: 5px;
+}
+
+/* 결과 텍스트 컨테이너 */
+.result-text {
+  width: 90%; /* 화면 너비 대비 90% 사용 */
+  max-width: 450px; /* 최대 너비 제한 */
+}
+
+/* MBTI 유형 제목 */
+.result-text h2 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 50px;
+}
+
+/* 설명 텍스트 */
+.result-text p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+/* 키워드 */
+.keywords {
+  display: flex;
+  flex-wrap: wrap; /* 여러 줄로 배치 가능하도록 설정 */
+  justify-content: center;
+  gap: 10px; /* 키워드 간격 설정 */
+  margin-bottom: 30px;
+}
+
+/* 개별 키워드 */
+.keyword {
+  background-color: #fff;
+  padding: 6px 10px;
+  font-size: 14px;
+  border-radius: 20px;
+}
+
+/* 다시 하기 버튼 */
+.restart-button {
+  background-color: #d32f2f;
+  color: white;
+  padding: 12px 20px;
+  font-size: 20px;
+  font-family: "Ownglyph_corncorn-Rg", sans-serif;
+  border-radius: 12px;
+  cursor: pointer; /* 마우스 오버 시 커서 변경 */
+  transition: background-color 0.2s ease-in-out; /* 배경색 변경 애니메이션 */
+}
+
+/* 모바일 반응형 */
+@media screen and (max-width: 768px) {
+  .result-container {
+    padding: 2px; /* 내부 여백 감소 */
+  }
+
+  .result-image {
+    width: 80%; /* 모바일에서 이미지 크기 조정 */
+    max-width: 250px;
+  }
+
+  .result-text h2 {
+    font-size: 22px;
+  }
+
+  .result-text p {
+    font-size: 14px;
+  }
+
+  .keyword {
+    font-size: 12px;
+    padding: 5px 8px;
+  }
+
+  .restart-button {
+    font-size: 20px;
+    padding: 10px 20px;
+  }
+}

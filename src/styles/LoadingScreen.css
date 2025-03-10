@@ -1,0 +1,35 @@
+/* 햄버거 이모지 회전 애니메이션 */
+.burger-loader {
+  font-size: 50px; /* 이모지 크기 */
+  display: inline-block;
+  animation: spin 1.5s linear infinite; /* 1.5초 동안 회전 애니메이션 반복 */
+  margin-bottom: 10px;
+}
+
+/* 로딩 화면 컨테이너 */
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f5c16c;
+  font-family: "Ownglyph_corncorn-Rg", sans-serif;
+}
+
+/* 로딩 텍스트 */
+.loader-container p {
+  margin-top: 20px;
+  font-size: 1.5rem;
+  color: #8b4513;
+  font-weight: bold;
+}
+
+/* 공통 회전 애니메이션 */
+@keyframes spin {
+  0% {
+    transform: rotate(0deg); /* 회전 시작점 */
+  }
+  100% {
+    transform: rotate(360deg); /* 한 바퀴 회전 */
+  }
+}

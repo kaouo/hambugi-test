@@ -1,0 +1,55 @@
+/* 홈 화면 전체 컨테이너 */
+.home-container {
+  font-family: "Ownglyph_corncorn-Rg", sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5c16c;
+  text-align: center;
+  padding: 20px;
+}
+
+/* 홈 화면 제목 */
+.home-container h1 {
+  font-size: 1.7rem;
+  font-weight: bold;
+  color: #5d4037;
+  margin-bottom: 15px;
+}
+
+/* 홈 화면 설명 텍스트 */
+.home-container p {
+  font-size: 1.2rem;
+  color: #5d4037;
+  margin-bottom: 30px;
+}
+
+/* 테스트 시작 버튼 */
+.start-button {
+  font-family: "Ownglyph_corncorn-Rg", sans-serif; /* 버튼 폰트도 적용 */
+  padding: 20px 30px;
+  font-size: 1.3em;
+  background-color: #ff5722;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer; /* 마우스 포인터 변경 */
+  transition: background-color 0.3s ease;
+  margin: 10px 0;
+}
+
+/* 버튼에 마우스를 올렸을 때 */
+.start-button:hover {
+  background-color: #d84315;
+}
+
+/* 창작자 */
+.footer {
+  margin-top: 100px;
+  font-size: 14px;
+  color: #5d4037;
+  text-align: center;
+  opacity: 0.8;
+}

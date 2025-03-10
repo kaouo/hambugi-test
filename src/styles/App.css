@@ -1,0 +1,117 @@
+/* ==========================
+   폰트 적용
+   ========================== */
+@font-face {
+  font-family: "Ownglyph_corncorn-Rg";
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/2412-1@1.0/Ownglyph_corncorn-Rg.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* ==========================
+     전체 배경
+     ========================== */
+body {
+  background-color: #f5c16c;
+  font-family: "Ownglyph_corncorn-Rg", sans-serif;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+/* ==========================
+     질문 컨테이너
+     ========================== */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* ==========================
+     진행률 바
+     ========================== */
+.progress-container {
+  width: 100%;
+  max-width: 400px;
+  height: 10px;
+  background-color: rgb(61, 129, 64);
+  border-radius: 5px;
+  position: relative;
+  overflow: visible;
+  margin: 30px auto;
+}
+
+/* 진행률 막대바 */
+.progress-bar {
+  height: 100%;
+  background-color: #8b4513;
+  border-radius: 4px;
+  transition: width 0.3s ease-in-out; /* 진행률 변경 애니메이션 */
+}
+
+/* 햄버거 이모지 (진행률 표시) */
+.progress-emoji {
+  position: absolute;
+  top: -15px;
+  transform: translateX(-50%);
+  font-size: 28px;
+  transition: left 0.3s ease-in-out; /* 이모지 이동 애니메이션 */
+}
+
+/* ==========================
+     반응형 스타일 (모바일 최적화)
+     ========================== */
+@media screen and (max-width: 768px) {
+  /* 모바일에서 컨테이너 패딩 줄이기 */
+  .container {
+    padding: 4vw;
+  }
+
+  /* 모바일에서 버튼 크기 조정 */
+  .answer-button {
+    font-size: 18px;
+    padding: 14px 20px;
+  }
+
+  /* 로딩 화면 */
+  .loader-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #fff;
+  }
+
+  /* 로딩 애니메이션 */
+  .loader {
+    border: 10px solid #f3f3f3;
+    border-top: 10px solid #3498db;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 2s linear infinite;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* 로딩 화면 텍스트 */
+  .loader-container p {
+    margin-top: 20px;
+    font-size: 1.5rem;
+    color: #3498db;
+  }
+}
