@@ -134,18 +134,32 @@ function Test() {
     if (currentQuestion < questions.length - 1) {
       setCurrentQuestion((prev) => prev + 1);
     } else {
-      navigate(`/loading/${calculateMBTI()}`);
+      const mbtiResult = calculateMBTI();
+      console.log("계산된 MBTI 값:", mbtiResult);
+
+      sessionStorage.setItem("mbtiResult", mbtiResult); // MBTI 값 저장
+      navigate(`/loading/${mbtiResult}`);
     }
   };
 
   // 최종 MBTI 유형을 계산하는 함수
   const calculateMBTI = () => {
     const { E, I, S, N, T, F, J, P } = scores;
+
+    const getDominant = (a, b) =>
+      scores[a] > scores[b]
+        ? a
+        : scores[a] < scores[b]
+        ? b
+        : Math.random() < 0.5
+        ? a
+        : b;
+
     return (
-      (E >= I ? "E" : "I") +
-      (S >= N ? "S" : "N") +
-      (T >= F ? "T" : "F") +
-      (J >= P ? "J" : "P")
+      getDominant("E", "I") +
+      getDominant("S", "N") +
+      getDominant("T", "F") +
+      getDominant("J", "P")
     );
   };
 

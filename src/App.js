@@ -18,19 +18,12 @@ function App() {
 
   return (
     <Routes>
-      {/* 홈페이지 경로 설정 */}
       <Route path="/" element={<Home />} />
-
-      {/* 테스트 페이지 경로 설정 */}
       <Route path="/test" element={<Test />} />
-
-      {/* 로딩 페이지 경로 설정, MBTI 유형을 URL에서 받음 */}
-      <Route path="/loading/:mbtiType" element={<LoadingScreen />} />
-
-      {/* 결과 페이지 경로 설정, MBTI 유형을 URL에서 받음 */}
-      <Route path="/result/:mbtiType" element={<Result />} />
-
-      {/* 존재하지 않는 경로로 접근 시 홈 화면으로 이동 */}
+      <Route path="/loading/:mbtiType" element={<LoadingScreen />} />{" "}
+      {/* ✅ 수정됨 */}
+      <Route path="/result/:mbti" element={<Result />} />{" "}
+      {/* ✅ 중첩된 Routes 삭제 */}
       <Route path="*" element={<Home />} />
     </Routes>
   );

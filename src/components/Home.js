@@ -19,18 +19,17 @@ function Home() {
   };
 
   useEffect(() => {
-    // sessionStorage에서 "reload" 키가 있으면 강제 새로고침
     if (sessionStorage.getItem("reload")) {
-      sessionStorage.removeItem("reload"); // 저장된 키 삭제
-      window.location.reload(); // 강제 새로고침
+      sessionStorage.removeItem("reload");
+      navigate("/");
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <div className="home-container">
       {/* 테스트 제목 */}
       <h1>🍔 나만의 햄부기 테스트 🍔</h1>
-      <p>* 2글자 이내 한글로 입력해주세요</p>
+      <p className="nickname-guide">* 2글자 이내 한글로 입력해주세요</p>
       <input
         type="text"
         value={nickname}

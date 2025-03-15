@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "../styles/LoadingScreen.css";
 
 /**
@@ -7,14 +7,20 @@ import "../styles/LoadingScreen.css";
  * 일정 시간이 지난 후 결과 페이지로 자동 이동
  */
 function LoadingScreen() {
-  const navigate = useNavigate(); // 페이지 이동을 위한 React Router Hook
+  const navigate = useNavigate();
+  const { mbtiType } = useParams(); // URL에서 MBTI 값 받기
 
   useEffect(() => {
+    console.log("로딩 페이지에서 받은 MBTI 값:", mbtiType); // ✅ 값 확인용
     setTimeout(() => {
-      // 3초 후 결과 페이지로 이동 (임시로 설정)
-      navigate("/result/ISFP");
+      if (mbtiType) {
+        navigate(`/result/${mbtiType}`);
+      } else {
+        console.error("MBTI 값이 없음! 홈으로 이동합니다.");
+        navigate("/");
+      }
     }, 3000);
-  }, [navigate]); // navigate가 변경될 때만 실행
+  }, [navigate, mbtiType]);
 
   return (
     <div className="loader-container">

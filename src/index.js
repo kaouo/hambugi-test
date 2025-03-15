@@ -9,7 +9,6 @@ import "./styles/index.css"; // 추가적인 기본 스타일 적용
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // 브라우저가 새로고침될 때 sessionStorage에 "reload" 값을 저장
-// 이렇게 하면 새로고침 후 App.js에서 홈 화면으로 이동하도록 설정 가능
 window.addEventListener("beforeunload", () => {
   sessionStorage.setItem("reload", "true"); // 새로고침 감지 후 저장
 });
@@ -17,7 +16,9 @@ window.addEventListener("beforeunload", () => {
 // React 애플리케이션을 렌더링
 root.render(
   <React.StrictMode>
-    <Router>
+    <Router future={{ v7_relativeSplat: true }}>
+      {" "}
+      {/* 옵션 추가 */}
       <App />
     </Router>
   </React.StrictMode>

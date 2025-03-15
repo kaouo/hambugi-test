@@ -5,10 +5,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   background-color: #f5c16c;
   text-align: center;
-  padding: 20px;
+  padding: 10px;
 }
 
 /* 홈 화면 제목 */
@@ -16,7 +16,7 @@
   font-size: 1.7rem;
   font-weight: bold;
   color: #5d4037;
-  margin-bottom: 55px;
+  margin-bottom: 60px;
 }
 
 /* 홈 화면 설명 텍스트 */
@@ -24,7 +24,8 @@
   font-family: "Ownglyph_ParkDaHyun", sans-serif;
   font-size: 0.9rem;
   color: #5d4037;
-  margin-bottom: 15px;
+  margin-top: 10px; /* 설명 위쪽 여백 추가 */
+  margin-bottom: 10px;
 }
 
 /* 공통 너비 */
@@ -42,7 +43,7 @@
   border: 10px #ff5722; /* 테두리 색 조정 */
   border-radius: 3px; /* 둥근 모서리 */
   text-align: center; /* 텍스트 중앙 정렬 */
-  margin-bottom: 70px;
+  margin-bottom: 100px;
 }
 
 /* 테스트 시작 버튼 */
@@ -64,9 +65,17 @@
   background-color: #d84315;
 }
 
+/* 별명 입력 가이드 */
+.nickname-guide {
+  font-size: 0.8rem;
+  color: #5d4037;
+  margin-top: 5px;
+  margin-bottom: 20px; /* 별명 입력 필드와 간격 조정 */
+}
+
 /* 창작자 */
 .footer {
-  margin-top: 100px;
+  margin-top: 10px;
   font-size: 14px;
   color: #5d4037;
   text-align: center;

@@ -1,16 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../styles/Result.css";
 import resultBackground from "../assets/images/result-background.png"; // 결과 화면 이미지 불러오기
 
-/**
- * MBTI 결과 페이지 컴포넌트
- * 사용자의 MBTI 유형에 따라 다른 결과를 보여줌
- */
 function Result() {
-  const navigate = useNavigate(); // 페이지 이동을 위한 Hook
-  const { mbti } = useParams(); // URL에서 MBTI 결과 값 가져오기
-  const nickname = localStorage.getItem("nickname") || "익명의"; // 저장된 별명 가져오기
+  const navigate = useNavigate();
+  const { mbti } = useParams();
+  const nickname = localStorage.getItem("nickname") || "익명의";
+  const [loading, setLoading] = useState(true);
+
+  console.log("✅ URL에서 받은 MBTI 값:", mbti);
+
+  // MBTI별 결과 이미지 경로
+  const imagePath = require(`../assets/images/${mbti?.toUpperCase()}.png`);
 
   // MBTI별 햄부기 유형 설명 객체
   const results = {
@@ -43,7 +45,13 @@ function Result() {
     INFP: {
       title: "감성 햄부기",
       desc: "세상을 따뜻하게 바라보는 햄부기!",
-      keywords: ["감성적", "이상주의", "따뜻한 마음"],
+      keywords: [
+        "상상의 나라",
+        "내가 꿈꾸는 세상 만들기",
+        "마음이 따뜻한 사람",
+        "누군가의 진심 어린 응원이 필요해",
+        "가끔 감정 깊이 빠질 때가 있어",
+      ],
     },
     ENFJ: {
       title: "사교왕 햄부기",
@@ -80,12 +88,18 @@ function Result() {
     ISTP: {
       title: "모험가 햄부기",
       desc: "직관적이고 실용적인 햄부기!",
-      keywords: ["논리적", "실용적", "즉흥적"],
+      keywords: [""],
     },
     ISFP: {
-      title: "예술가 햄부기",
+      title: "예술가",
       desc: "자유롭고 감성적인 햄부기!",
-      keywords: ["예술적", "감성적", "자유로운 영혼"],
+      keywords: [
+        "즉흥 조아",
+        "내 감정을 중요하게 생각해",
+        "자유롭고 여유로운 거",
+        "남에게 피해주는 거 극혐",
+        "나만의 감성을 담은 무언가를 만들고 싶어",
+      ],
     },
     ESTP: {
       title: "에너자이저 햄부기",
@@ -93,40 +107,57 @@ function Result() {
       keywords: ["도전적", "즉흥적", "에너지 넘침"],
     },
     ESFP: {
-      title: "흥부자 햄부기",
+      title: "흥부자",
       desc: "즐거움을 추구하는 햄부기!",
       keywords: ["유쾌한", "사교적", "즉흥적"],
     },
   };
 
-  // MBTI 결과 없을 때 기본값 (ISFP)
-  const { title, desc, keywords } = results[mbti] || results.ISFP;
+  // MBTI 값이 undefined일 가능성 방지 (소문자로 들어올 경우 대비)
+  const result = results[mbti?.toUpperCase()];
+
+  // MBTI 값이 없을 경우, 홈으로 이동 (1초 대기)
+  useEffect(() => {
+    if (!mbti) {
+      console.error("잘못된 MBTI 값이 전달됨:", mbti);
+      setTimeout(() => navigate("/"), 1000);
+    } else {
+      setLoading(false); // 정상적으로 값이 로드되면 로딩 해제
+    }
+  }, [mbti, navigate]);
+
+  // 로딩 중 화면 표시
+  if (loading) {
+    return <div className="loading">로딩 중...</div>;
+  }
+
+  // 결과가 없는 경우, 렌더링 중단
+  if (!result) return null;
+
+  const { title, desc, keywords } = result;
 
   return (
     <div className="result-container">
-      {/* 결과 배경 이미지 */}
-      <img src={resultBackground} alt="햄부기 결과" className="result-image" />
+      <div className="image-wrapper">
+        <p className="hambugi-type">
+          {title.split(" ")[0]} {nickname}부기
+        </p>
 
-      {/* 결과 텍스트 영역 */}
-      <div className="result-text">
-        <h2>{nickname}님의 햄부기 유형</h2>
-        <h2>{title}</h2>
-        <p>{desc}</p>
+        {/* MBTI에 맞는 이미지 표시 */}
+        <img src={imagePath} alt={title} className="result-image" />
 
-        {/* MBTI 유형별 키워드 */}
-        <div className="keywords">
+        <div className="keywords-overlay">
           {keywords.map((keyword, index) => (
-            <span key={index} className="keyword">
+            <span key={index} className={`keyword keyword-${index}`}>
               {keyword}
             </span>
           ))}
         </div>
-
-        {/* 다시 하기 버튼 - 홈으로 이동 */}
-        <button className="restart-button" onClick={() => navigate("/")}>
-          다시 하기
-        </button>
       </div>
+
+      <button className="restart-button" onClick={() => navigate("/")}>
+        다시 하기
+      </button>
     </div>
   );
 }
